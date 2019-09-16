@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.Double?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="packages.MainController">
+   
+   <children>
+   
+      	<TabPane fx:id="MainTabs" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    
+
+        <tabs>
+          <Tab fx:id="homeTab" text=" Home ">
+            <content>
+              <AnchorPane fx:id="homeScreen" minHeight="0.0" minWidth="0.0" onKeyReleased="#sliderTwoKey" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: LightBlue;">
+                     <children>
+                        <Label fx:id="D1Status" layoutX="72.0" layoutY="77.0" text="D1Status" />
+                        <Label fx:id="D2Status" layoutX="253.0" layoutY="77.0" text="D2Status" />
+                        <Label fx:id="D3Status" layoutX="80.0" layoutY="260.0" text="D3Status" />
+                        <Slider fx:id="SliderD3" blockIncrement="5.0" layoutX="40.0" layoutY="229.0" max="99.0" onKeyReleased="#sliderThreeKey" onMouseReleased="#sliderThreeChanged" />
+                        <Slider fx:id="SliderD1" blockIncrement="5.0" layoutX="40.0" layoutY="48.0" max="99.0" onKeyReleased="#sliderOneKey" onMouseReleased="#sliderOneChanged" />
+                        <Label layoutX="435.0" layoutY="170.0" text="Target Network" />
+                        <VBox fx:id="vbox" layoutX="435.0" layoutY="206.0" prefHeight="46.0" prefWidth="144.0">
+                           <children>
+                              <RadioButton fx:id="home" mnemonicParsing="false" text="Home">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="TG1" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="wheelChair" mnemonicParsing="false" text="Wheel Chair" toggleGroup="$TG1" />
+                           </children></VBox>
+                        <Label fx:id="emotivStatus" layoutX="456.0" layoutY="40.0" text="Emotiv Status" />
+                        <ProgressBar fx:id="signalProgress" layoutX="476.0" layoutY="69.0" prefWidth="49.0" progress="0.0" />
+                        <ProgressBar fx:id="batteryProgress" layoutX="476.0" layoutY="111.0" prefWidth="49.0" progress="0.0" />
+                        <Label layoutX="432.0" layoutY="69.0" text="Signal" />
+                        <Label layoutX="430.0" layoutY="111.0" text="Battery" />
+                        <ImageView fx:id="deviceOneImg" fitHeight="45.0" fitWidth="62.0" layoutX="71.0" layoutY="111.0" onMouseClicked="#DeviceOne" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="deviceTwoImg" fitHeight="45.0" fitWidth="62.0" layoutX="246.0" layoutY="111.0" onMouseClicked="#DeviceTwo" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="deviceThreeImg" fitHeight="45.0" fitWidth="62.0" layoutX="79.0" layoutY="295.0" onMouseClicked="#DeviceThree" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="recImage" fitHeight="45.0" fitWidth="62.0" layoutX="246.0" layoutY="295.0" onMouseClicked="#recClick" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="recStatus" layoutX="251.0" layoutY="260.0" text="RecStatus" />
+                        <Label layoutX="436.0" layoutY="269.0" text="Target Suite" />
+                        <Slider fx:id="SliderD2" layoutX="213.0" layoutY="48.0" max="99.0" onKeyReleased="#sliderTwoKey" onMouseReleased="#sliderTwoChanged" />
+                        <VBox layoutX="435.0" layoutY="301.0" prefHeight="49.0" prefWidth="104.0">
+                           <children>
+                              <RadioButton fx:id="cognitive" mnemonicParsing="false" text="Cognitive">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="TG3" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="expressive" mnemonicParsing="false" prefHeight="21.0" prefWidth="107.0" text="Expressive" toggleGroup="$TG3" />
+                           </children>
+                        </VBox>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+          <Tab fx:id="graphTab" text=" Graph ">
+            <content>
+              <AnchorPane fx:id="graphScreen" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: LIGHTBLUE;">
+                     <children>
+                        <LineChart fx:id="RTG" layoutX="43.0" layoutY="11.0" prefHeight="421.0" prefWidth="600.0" style="-fx-background-color: WHITE;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" fx:id="x" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis fx:id="y" side="LEFT" upperBound="90.0" />
+                          </yAxis>
+                        </LineChart>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab fx:id="scenesTab" text=" Scenes ">
+              <content>
+                <AnchorPane fx:id="scenesScreen" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: LIGHTBLUE;">
+                     <children>
+                        <ListView fx:id="sceneListView" layoutX="35.0" layoutY="34.0" onMouseClicked="#showSettings" prefHeight="91.0" prefWidth="206.0" />
+                        <Slider fx:id="sceneSliderOne" layoutX="373.0" layoutY="47.0" max="99.0" />
+                        <Label fx:id="sceneSliderStatusOne" layoutX="439.0" layoutY="76.0" text="0" />
+                        <Button fx:id="sceneSave" layoutX="418.0" layoutY="276.0" mnemonicParsing="false" onMouseClicked="#saveScene" text="Save" />
+                        <Slider fx:id="sceneSliderTwo" layoutX="374.0" layoutY="116.0" max="99.0" />
+                        <Slider fx:id="sceneSliderThree" layoutX="373.0" layoutY="180.0" max="99.0" />
+                        <Label fx:id="sceneSliderStatusTwo" layoutX="439.0" layoutY="141.0" text="0" />
+                        <Label fx:id="sceneSliderStatusThree" layoutX="439.0" layoutY="206.0" text="0" />
+                        <Label layoutX="291.0" layoutY="46.0" text="Light One" />
+                        <Label layoutX="291.0" layoutY="115.0" text="Light Two" />
+                        <Label layoutX="291.0" layoutY="179.0" text="Light Three" />
+                        <Button fx:id="addDeviceMenu" layoutX="90.0" layoutY="276.0" mnemonicParsing="false" onAction="#openDeviceWindow" text="Device Manager" />
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+            <Tab fx:id="wheelchairTab" text="Wheelchair">
+              <content>
+                <AnchorPane fx:id="wheelchairScreen" focusTraversable="true" minHeight="0.0" minWidth="0.0" onKeyPressed="#keyPress" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: LIGHTBLUE;">
+                     <children>
+                        <Polygon fx:id="forwardPoly" fill="RED" layoutX="300.0" layoutY="129.0" stroke="BLACK" strokeType="INSIDE">
+                          <points>
+                            <Double fx:value="-50.0" />
+                            <Double fx:value="40.0" />
+                            <Double fx:value="50.0" />
+                            <Double fx:value="40.0" />
+                            <Double fx:value="0.0" />
+                            <Double fx:value="-60.0" />
+                          </points>
+                        </Polygon>
+                        <Polygon fx:id="leftPoly" fill="RED" layoutX="200.0" layoutY="158.0" points="50.0, 93.0, 50.0, 10.5, -86.5, 50.5" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="reversePoly" fill="RED" layoutX="300.0" layoutY="211.0" points="-50.0, 40.0, 50.0, 40.0, -1.5, 132.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="rightPoly" fill="RED" layoutX="437.0" layoutY="158.0" points="50.0, 93.0, 50.0, 10.5, -86.5, 50.5" rotate="180.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#ffd51f" layoutX="300.0" layoutY="210.0" radius="34.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text layoutX="291.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="W" />
+                        <Text layoutX="197.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A" />
+                        <Text layoutX="393.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="D" />
+                        <Text layoutX="296.0" layoutY="303.0" strokeType="OUTSIDE" strokeWidth="0.0" text="S" />
+                        <Text layoutX="270.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Controls" />
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+    
+   </children>
+</AnchorPane>
